@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="fr">
+
+<head>
+  <title>jQuery_projet_03_exercice_03</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid bg-primary row justify-content-center p-3">
+    <h1 class="col-12 p-4 text-center text-warning">jQuery_projet_03_exercice_03</h1>
+    <h4 class="col-9 p-4 text-center text-light">Créer un jeu pour deviner un nombre entre 1 et 100. Le nombre doit être saisie dans un input. Au clic sur un bouton, une modal doit indiquer si le nombre à trouver est supérieur ou inférieur au nombre
+      saisie dans l'input. Quand le nombre est trouvé vous devez indiquer le nombre de tentative.</h4>
+    <div class="row col-11 justify-content-center">
+      <div class="row col-10 bg-warning rounded p-2 m-2 justify-content-center">
+        <div class="row col-9 justify-content-center bg-secondary rounded m-4">
+          <div class="row col-9 border border-success rounded justify-content-center text-light p-3 m-3">Jouez au jeu en tentant votre réponse ci-dessous</div>
+          <input class="row col-9 btn btn-outline-primary rounded border border-primary text-warning  justify-content-centerp-3 m-3" id="proposition" />
+          <input class="row col-9 border border-light btn-primary rounded p-3 m-3 justify-content-center text-warning" type="submit" value="Validez ici pour deviner le nombre juste!" id="check" />
+          <!-- <div class="alert info" id="alert"></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.js">
+  </script>
+  <script>
+    // ********************** SANDY X base 10 ***********************************
+
+    $(document).ready(function() {
+      let solution = Math.floor(Math.random() * 100) + 1;
+      console.log(solution);
+      let trial = 0;
+      $('#check').click(function() {
+        trial++;
+        console.log(trial);
+        let proposal = $('#proposition').val();
+        if (isNaN(proposal) == false) {
+          if (parseInt(proposal, 10) === solution) {
+            alert('Bravo vous avez trouvé en ' + trial + ' tentatives');
+            return;
+          } else if (trial === 5) {
+            alert('Vous avez perdu ! Le nombre était : ' + solution);
+            return;
+          } else if (parseInt(proposal, 10) < solution) {
+            alert(proposal + ' est trop petit');
+          } else {
+            alert(proposal + ' est trop grand');
+          }
+        } else {
+          alert('Veuillez remplir les champs correctement s\'il vous plaît !');
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
